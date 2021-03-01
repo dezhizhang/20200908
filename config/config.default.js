@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-01 22:46:08
- * @LastEditTime: 2021-03-01 22:55:55
+ * @LastEditTime: 2021-03-01 23:18:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /20200908/config/config.default.js
@@ -36,7 +36,7 @@ module.exports = appInfo => {
   config.cluster = {
     listen: {
       path: '',
-      port: 8094,
+      port: 8086,
       hostname: '0.0.0.0',
     }
   };
