@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-03-01 22:46:08
+ * @LastEditTime: 2021-03-01 22:55:55
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /20200908/config/config.default.js
+ */
 /* eslint valid-jsdoc: "off" */
 
 'use strict';
@@ -22,6 +30,14 @@ module.exports = appInfo => {
   config.view = {
     mapping: {
       '.html': 'ejs',
+    }
+  };
+
+  config.cluster = {
+    listen: {
+      path: '',
+      port: 8094,
+      hostname: '0.0.0.0',
     }
   };
 
