@@ -88,10 +88,11 @@
 		
 		// 开始截图
 		function clickBt(){
-			debugger
+			// debugger
 			html2canvas(document.querySelector("#contLi")).then(canvas => {
 				document.body.appendChild(canvas)
 			});
+			window.location.href="/from";
 		}
 	</script>
 	<script>

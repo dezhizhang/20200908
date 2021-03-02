@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-02 21:22:48
- * @LastEditTime: 2021-03-02 22:18:13
+ * @LastEditTime: 2021-03-03 00:29:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /20200908/app/view/home.html
@@ -26,9 +26,15 @@
         <div class="content-box">
             <!-- <img src="/public/default/img/border.png"/> -->
         </div>
-        <div class="bottom">
+        <div class="bottom" id="bottom">
             <img src="/public/default/img/bottom-btn.png"/>
         </div>
     </div>
 </body>
+<script type="text/javascript">
+    let bottom = document.getElementById('bottom');
+    bottom.onclick = function() {
+        window.location.href = "/photograph"
+    }
+</script>
 </html>
