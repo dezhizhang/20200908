@@ -12,10 +12,9 @@
 	</head>
 	<body>
 		<div id="contLi">
-			<img id='music' class="play" src="/public/default/img/play.png" />
-			<img class="homeBg" src="/public/default/img/homeBg.png" />
-			<div class="buttonStart">拍摄</div>
+			<img class="homeBg" src="/public/default/img/divbg.png" />
 			<div class="cont" id="app">
+				<div class="mycanvasBg"></div>
 				<div class="mycanvas" id="myCanvas">
 					<div class="addNewImg" :class="layerIndex == index ? 'addNewImgBorder' : '' " @click="onClicklayerIndex(index)" v-for="(item,index) in contList" :style="{zIndex:(index)}">
 						<div v-if="layerIndex == index">
@@ -39,8 +38,10 @@
 					</div>
 					<div class="sliderCont">
 						<div class="sliderContAvt"  :class=" activeClass =='b' ? 'widthR':'widthG'">
-							<div class="sliderContListA" v-if="activeClass == 'b'" v-for="item in listB" :style="{background:(item)}"></div>
-							<div class="sliderContListA" v-if="activeClass == 'b'" v-for="item in listC" :style="{background:(item)}">
+							<div class="sliderContListA" v-if="activeClass == 'b'" v-for="item in listB" :style="{background:(item)}">
+								<img :src="item" @click="onAddImg(item)" :data-url='item' />
+							</div>
+							<div class="sliderContListA" v-if="activeClass == 'c'" v-for="item in listC" :style="{background:(item)}">
 								<img :src="item" @click="onAddImg(item)" :data-url='item' />
 							</div>
 						</div>
