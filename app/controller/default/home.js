@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-01 22:46:08
- * @LastEditTime: 2021-03-02 21:29:05
+ * @LastEditTime: 2021-03-02 23:48:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /20200908/app/controller/default/home.js
@@ -20,6 +20,9 @@ class HomeController extends Controller {
   }
   async home() {
     await this.ctx.render('/home');
+  }
+  async from() {
+    await this.ctx.render('/from');
   }
 }
 
