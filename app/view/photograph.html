@@ -17,7 +17,7 @@
 			<div class="buttonStart">拍摄</div>
 			<div class="cont" id="app">
 				<div class="mycanvas" id="myCanvas">
-					<div class="addNewImg" :class="layerIndex == index ? 'addNewImgBorder' : '' " @click="onClicklayerIndex(index)"   v-for="(item,index) in contList" :style="{zIndex:(index)}">
+					<div class="addNewImg" :class="layerIndex == index ? 'addNewImgBorder' : '' " @click="onClicklayerIndex(index)" v-for="(item,index) in contList" :style="{zIndex:(index)}">
 						<div v-if="layerIndex == index">
 							<img class="close" src="/public/default/img/close.png" @click="closeImg(index)" />
 							<div class="operation">
@@ -29,17 +29,20 @@
 					</div>
 				</div>
 				<div class="slider">
+					<div class="buttonStart">
+						<img class="btn" src="/public/default/img/shootingBut.png" onclick="clickBt()" />
+						<img src="/public/default/img/shootingBg.png" />
+					</div>
 					<div class="sliderTitle">
-						<div @click="onClickImg('a')" :class="activeClass =='a' ? 'active':''"><img :src="activeClass =='a' ? '/public/default/img/zhaopians.png':'/public/default/img/zhaopian.png'" /></div>
 						<div @click="onClickImg('b')" :class="activeClass =='b' ? 'active':''"><img :src="activeClass =='b' ? '/public/default/img/renwus.png':'/public/default/img/renwu.png'" /></div>
 						<div @click="onClickImg('c')" :class="activeClass =='c' ? 'active':''"><img :src="activeClass =='c' ? '/public/default/img/maomis.png':'/public/default/img/maomi.png'" /></div>
 					</div>
 					<div class="sliderCont">
-						<div class="sliderContListA" v-if="activeClass == 'a'" v-for="item in listA" :style="{background:(item)}"></div>
-
-						<div class="sliderContListA" v-if="activeClass == 'b'" v-for="item in listB" :style="{background:(item)}">
-							<!-- <img :src="item" onClick="onAddImg(this)" :data-url='item' /> -->
-							<img :src="item" @click="onAddImg(item)" :data-url='item' />
+						<div class="sliderContAvt"  :class=" activeClass =='b' ? 'widthR':'widthG'">
+							<div class="sliderContListA" v-if="activeClass == 'b'" v-for="item in listB" :style="{background:(item)}"></div>
+							<div class="sliderContListA" v-if="activeClass == 'b'" v-for="item in listC" :style="{background:(item)}">
+								<img :src="item" @click="onAddImg(item)" :data-url='item' />
+							</div>
 						</div>
 					</div>
 
@@ -48,6 +51,7 @@
 		</div>
 	</body>
 	<script src="/public/default/js/jquery-3.5.1.min.js"></script>
+	<script src="/public/default/js/html2canvas.min.js"></script>
 	<script>
 		var oW, oH;
 		
@@ -78,7 +82,15 @@
 		})
 
 		function defaultEvent(e) {
-			e.preventDefault();
+			// e.preventDefault();
+		}
+		
+		// 开始截图
+		function clickBt(){
+			debugger
+			html2canvas(document.querySelector("#contLi")).then(canvas => {
+				document.body.appendChild(canvas)
+			});
 		}
 	</script>
 	<script>
@@ -86,9 +98,10 @@
 			el: '#app',
 			data: {
 				lent: 0,
-				activeClass: 'a',
+				activeClass: 'b',
 				listA: ['#CFB20D', '#922C38', '#D62E1F', '#38526C'],
-				listB: ['/public/default/img/A1.png', '/public/default/img/A2.png'],
+				listB: ['/public/default/img/pet6.png','/public/default/img/pet7.png','/public/default/img/pet8.png','/public/default/img/pet9.png','/public/default/img/pet10.png','/public/default/img/pet11.png','/public/default/img/pet12.png','/public/default/img/pet13.png'],
+				listC: ['/public/default/img/pet1.png','/public/default/img/pet2.png','/public/default/img/pet3.png','/public/default/img/pet4.png','/public/default/img/pet5.png'],
 				contList: [],
 				layerIndex: 0
 			},
@@ -98,7 +111,7 @@
 				},
 				onAddImg(item) {
 					this.contList.push(item)
-					layerIndex == this.contList.length
+					layerIndex = this.contList.length
 				},
 				closeImg(index) {
 					this.contList.splice(index, 1);
