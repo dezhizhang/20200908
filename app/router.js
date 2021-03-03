@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-01 22:46:08
- * @LastEditTime: 2021-03-02 23:48:54
+ * @LastEditTime: 2021-03-03 23:24:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /20200908/app/router.js
@@ -17,5 +17,6 @@ module.exports = app => {
   router.get('/photograph', controller.default.home.photograph);
   router.get('/home',controller.default.home.home);
   router.get('/from',controller.default.home.from);
+  router.get('/share',controller.default.home.share);
 
 };
