@@ -88,7 +88,7 @@ body{
 }
 
 .sliderTitle >div{
-	width: 50%;
+	width: 33.33%;
 	height: .75rem;
 	line-height: .75rem;
 	float: left;
@@ -96,9 +96,14 @@ body{
 	box-sizing: border-box;
 }
 
+
 .sliderTitle >div>img{
 	width: .5rem;
 	margin-top: .125rem;
+}
+
+.sliderTitle .towers img{
+	width: .35rem;
 }
 
 .sliderTitle .active{
@@ -126,11 +131,17 @@ body{
 	float: left;
 	margin-left: .2rem;
 	background: rgb(252,232,207);
+	text-align: center;
 	overflow: hidden;
 }
 
 .sliderCont .sliderContListA img{
 	width: 100%;
+}
+
+
+.sliderCont .sliderContListTowers img{
+	width: 1.25rem;
 }
 
 .mycanvas{

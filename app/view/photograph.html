@@ -34,11 +34,15 @@
 							<img src="/public/default/img/shootingBg.png" />
 						</div>
 						<div class="sliderTitle">
+							<div @click="onClickImg('a')" class="towers" :class="activeClass =='a' ? 'active':''"><img :src="activeClass =='a' ? '/public/default/img/towers.png':'/public/default/img/tower.png'" /></div>
 							<div @click="onClickImg('b')" :class="activeClass =='b' ? 'active':''"><img :src="activeClass =='b' ? '/public/default/img/renwus.png':'/public/default/img/renwu.png'" /></div>
 							<div @click="onClickImg('c')" :class="activeClass =='c' ? 'active':''"><img :src="activeClass =='c' ? '/public/default/img/maomis.png':'/public/default/img/maomi.png'" /></div>
 						</div>
 						<div class="sliderCont">
 							<div class="sliderContAvt"  :class=" activeClass =='b' ? 'widthR':'widthG'">
+								<div class="sliderContListA sliderContListTowers" v-if="activeClass == 'a'" v-for="item in listA" :style="{background:(item)}">
+									<img :src="item" @click="onAddImg(item)" :data-url='item' />
+								</div>
 								<div class="sliderContListA" v-if="activeClass == 'b'" v-for="item in listB" :style="{background:(item)}">
 									<img :src="item" @click="onAddImg(item)" :data-url='item' />
 								</div>
@@ -141,8 +145,8 @@
 			data: {
 				page:'A',
 				lent: 0,
-				activeClass: 'b',
-				listA: ['#CFB20D', '#922C38', '#D62E1F', '#38526C'],
+				activeClass: 'a',
+				listA: ['/public/default/img/tower1.png','/public/default/img/tower2.png','/public/default/img/tower3.png','/public/default/img/tower4.png','/public/default/img/tower5.png'],
 				listB: ['/public/default/img/pet6.png','/public/default/img/pet7.png','/public/default/img/pet8.png','/public/default/img/pet9.png','/public/default/img/pet10.png','/public/default/img/pet11.png','/public/default/img/pet12.png','/public/default/img/pet13.png'],
 				listC: ['/public/default/img/pet1.png','/public/default/img/pet2.png','/public/default/img/pet3.png','/public/default/img/pet4.png','/public/default/img/pet5.png'],
 				contList: [],
@@ -195,6 +199,7 @@
 					this.layerIndex = index
 				},
 				clickBt(){
+					this.layerIndex = null
 					document.getElementById("slider").style.display="none"
 					let dom = document.querySelector("#contLi");
 					let taht = this;
