@@ -51,10 +51,21 @@
         </div>
         <textarea class="textarea"></textarea>
         <div class="bottom">
-           <div class="btn">
+           <div class="btn" onclick="onshow()">
                <img src="/public/default/img/bottom.png"/>
            </div>
         </div>
+		<div class="shareBg" onclick = "onhide()">
+			<img src="/public/default/img/shareBg.png" />
+		</div>
     </div>
 </body>
+<script>
+	function onshow(){
+		document.getElementsByClassName('shareBg')[0].style.display="";
+	}
+	function onhide(){
+		document.getElementsByClassName('shareBg')[0].style.display="none";
+	}
+</script>
 </html>
