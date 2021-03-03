@@ -11,44 +11,79 @@
 		<link rel="stylesheet" href="/public/default/css/photograph.css" />
 	</head>
 	<body>
-		<div id="contLi">
-			<img class="homeBg" src="/public/default/img/divbg.png" />
-			<div class="cont" id="app">
-				<div class="mycanvasBg"></div>
-				<div class="mycanvas" id="myCanvas">
-					<div class="addNewImg" :class="layerIndex == index ? 'addNewImgBorder' : '' " @click="onClicklayerIndex(index)" v-for="(item,index) in contList" :style="{zIndex:(index)}">
-						<div v-if="layerIndex == index">
-							<img class="close" src="/public/default/img/close.png" @click="closeImg(index)" />
-							<div class="operation">
-								<div @click="upImg(index)"><span>上一层</span></div>
-								<div @click="dwImg(index)"><span>下一层</span></div>
+		<div id="app">
+			<div v-if="page == 'A'" id="contLi">
+				<img class="homeBg" src="/public/default/img/divbg.png" />
+				<div class="cont">
+					<div class="mycanvasBg"></div>
+					<div class="mycanvas" id="myCanvas">
+						<div class="addNewImg" :class="layerIndex == index ? 'addNewImgBorder' : '' " @click="onClicklayerIndex(index)" v-for="(item,index) in contList" :style="{zIndex:(index)}">
+							<div v-if="layerIndex == index">
+								<img class="close" src="/public/default/img/close.png" @click="closeImg(index)" />
+								<div class="operation">
+									<div @click="upImg(index)"><span>上一层</span></div>
+									<div @click="dwImg(index)"><span>下一层</span></div>
+								</div>
 							</div>
-						</div>
-						<img class="mobileImg" :src="item" />
-					</div>
-				</div>
-				<div class="slider">
-					<div class="buttonStart">
-						<img class="btn" src="/public/default/img/shootingBut.png" onclick="clickBt()" />
-						<img src="/public/default/img/shootingBg.png" />
-					</div>
-					<div class="sliderTitle">
-						<div @click="onClickImg('b')" :class="activeClass =='b' ? 'active':''"><img :src="activeClass =='b' ? '/public/default/img/renwus.png':'/public/default/img/renwu.png'" /></div>
-						<div @click="onClickImg('c')" :class="activeClass =='c' ? 'active':''"><img :src="activeClass =='c' ? '/public/default/img/maomis.png':'/public/default/img/maomi.png'" /></div>
-					</div>
-					<div class="sliderCont">
-						<div class="sliderContAvt"  :class=" activeClass =='b' ? 'widthR':'widthG'">
-							<div class="sliderContListA" v-if="activeClass == 'b'" v-for="item in listB" :style="{background:(item)}">
-								<img :src="item" @click="onAddImg(item)" :data-url='item' />
-							</div>
-							<div class="sliderContListA" v-if="activeClass == 'c'" v-for="item in listC" :style="{background:(item)}">
-								<img :src="item" @click="onAddImg(item)" :data-url='item' />
-							</div>
+							<img class="mobileImg" :src="item" />
 						</div>
 					</div>
+					<div class="slider" id="slider">
+						<div class="buttonStart">
+							<img class="btn" src="/public/default/img/shootingBut.png" @click="clickBt()" />
+							<img src="/public/default/img/shootingBg.png" />
+						</div>
+						<div class="sliderTitle">
+							<div @click="onClickImg('b')" :class="activeClass =='b' ? 'active':''"><img :src="activeClass =='b' ? '/public/default/img/renwus.png':'/public/default/img/renwu.png'" /></div>
+							<div @click="onClickImg('c')" :class="activeClass =='c' ? 'active':''"><img :src="activeClass =='c' ? '/public/default/img/maomis.png':'/public/default/img/maomi.png'" /></div>
+						</div>
+						<div class="sliderCont">
+							<div class="sliderContAvt"  :class=" activeClass =='b' ? 'widthR':'widthG'">
+								<div class="sliderContListA" v-if="activeClass == 'b'" v-for="item in listB" :style="{background:(item)}">
+									<img :src="item" @click="onAddImg(item)" :data-url='item' />
+								</div>
+								<div class="sliderContListA" v-if="activeClass == 'c'" v-for="item in listC" :style="{background:(item)}">
+									<img :src="item" @click="onAddImg(item)" :data-url='item' />
+								</div>
+							</div>
+						</div>
 
+					</div>
 				</div>
 			</div>
+			<div  v-if="page == 'B'" id="form" class="form">
+			<div class="contBg">
+				<img src="/public/default/img/from.png" />
+			</div>
+			<div class="content">
+					<div class="box" v-for="(item,index) in list">
+						<div class="box-left" @click="onCk(index)">
+							<img :src="item.ck == true ? cks : ck " />	
+						</div>
+						<div class="box-right">
+							<img :src="item.img" :data-url='item.img' />
+						</div>
+					</div>
+					<textarea class="textarea" id="myVal" placeholder="请输入你的国庆KPI(30字以内)" maxlength="30"></textarea>
+					<div class="bottom">
+						<div class="btn" @click="onshow()">
+							<img src="/public/default/img/bottom.png" />
+						</div>
+					</div>
+				</div>
+				
+		</div>
+			<div  v-if="page == 'C'" id="share">
+				<div class="shareContBg">
+					<img src="/public/default/img/shareContBg.png" />
+					<img class="shareBottom" @click="onshowShare()" src="/public/default/img/bottom.png" />
+				</div>
+				<div class="shareBg" @click="onhideShare()">
+					<img src="/public/default/img/shareBg.png" />
+				</div>
+			</div>
+		</div>
+		<div class="shareCont" id="#shareCont">
 		</div>
 	</body>
 	<script src="/public/default/js/jquery-3.5.1.min.js"></script>
@@ -56,7 +91,7 @@
 	<script>
 		var oW, oH;
 		
-		$('#contLi').on('touchstart', '.addNewImg', function(e) {
+		$('body').on('touchstart', '.addNewImg', function(e) {
 			var touches = e.touches[0];
 			oW = touches.clientX - this.offsetLeft;
 			oH = touches.clientY - this.offsetTop;
@@ -64,7 +99,7 @@
 			document.addEventListener("touchmove", defaultEvent, false);
 		})
 
-		$('#contLi').on('touchmove', '.addNewImg', function(e) {
+		$('body').on('touchmove', '.addNewImg', function(e) {
 			var touches = e.touches[0];
 			var oLeft = touches.clientX - oW;
 			var oTop = touches.clientY - oH;
@@ -78,7 +113,7 @@
 			this.style.top = oTop + "px";
 		})
 
-		$('#contLi').on('touchend', '.addNewImg', function(e) {
+		$('body').on('touchend', '.addNewImg', function(e) {
 			document.removeEventListener("touchmove", defaultEvent, false);
 		})
 
@@ -87,29 +122,49 @@
 		}
 		
 		// 开始截图
-		function clickBt(){
-			let dom = document.querySelector("#contLi");
-			localStorage.setItem("key", dom.innerHTML);
-			window.location.href="/from";
+// 		function clickBt(){
+// 			let dom = document.querySelector("#contLi");
+// 			// localStorage.setItem("key", dom.innerHTML);
+// 			// window.location.href="/from";
 // 			html2canvas(document.querySelector("#contLi")).then(canvas => {
-// 				debugger
+// 				let	dom = canvas.toDataURL();
+// 				localStorage.setItem("key", dom);
+// 				 window.location.href="/from";
 // 				document.body.appendChild(canvas)
-// 				// window.location.href="/from";
 // 			});
-			
-		}
+// 			
+// 		}
 	</script>
 	<script>
 		new Vue({
 			el: '#app',
 			data: {
+				page:'A',
 				lent: 0,
 				activeClass: 'b',
 				listA: ['#CFB20D', '#922C38', '#D62E1F', '#38526C'],
 				listB: ['/public/default/img/pet6.png','/public/default/img/pet7.png','/public/default/img/pet8.png','/public/default/img/pet9.png','/public/default/img/pet10.png','/public/default/img/pet11.png','/public/default/img/pet12.png','/public/default/img/pet13.png'],
 				listC: ['/public/default/img/pet1.png','/public/default/img/pet2.png','/public/default/img/pet3.png','/public/default/img/pet4.png','/public/default/img/pet5.png'],
 				contList: [],
-				layerIndex: 0
+				layerIndex: 0,
+				// form
+				ck:"/public/default/img/ck.png",
+				cks:"/public/default/img/cks.png",
+				index:0,
+				list: [{
+					img:"/public/default/img/01.png",
+					ck:true
+				},{
+					img:"/public/default/img/02.png",
+					ck:false
+				},{
+					img:"/public/default/img/03.png",
+					ck:false
+				},{
+					img:"/public/default/img/04.png",
+					ck:false
+				}],
+				text:['策划一场国庆趴体，提升大家族的用户活跃','国庆带家人孩子去广州塔坐摩天轮','国庆全家去拍一张大合照！留作纪念','国庆在家做一顿大餐！全家一起聚餐'],
 			},
 			methods: {
 				onClickImg(e) {
@@ -139,8 +194,49 @@
 				onClicklayerIndex(index) {
 					this.layerIndex = index
 				},
-				
+				clickBt(){
+					document.getElementById("slider").style.display="none"
+					let dom = document.querySelector("#contLi");
+					let taht = this;
+					html2canvas(document.querySelector("#contLi")).then(canvas => {
+						taht.shareCanvas = canvas
+						// document.body.appendChild(canvas)
+					});
+					document.getElementById("slider").style.display="block"
+					this.page = 'B'
+				},
+				//  form
+				 onCk(index){
+					 let list = this.list;
+					 let ck = false;
+					 for(let i = 0; i<list.length;i++){
+						 list[i].ck = false
+					 }
+					 list[index].ck = true
+					 this.index = index
+					 this.list = list
+				},
+				onshow(){
+					this.page = 'C'
+					let val = $("#myVal").val();
+					val = val?val: this.text[this.index];
+					let dom = document.createElement("div");
+					let domA = document.createElement("div")
+					dom.className = 'shareBgScale'
+					domA.className = 'setText'
+					domA.innerText = val
+					dom.appendChild(this.shareCanvas)
+					dom.appendChild(domA)
+					document.getElementsByClassName('shareCont')[0].appendChild(dom);
+				},
+				onshowShare(){
+					document.getElementsByClassName('shareBg')[0].style.display = "block";
+				},
+				onhideShare(){
+					document.getElementsByClassName('shareBg')[0].style.display = "none";
+				},
 			},
 		})
 	</script>
+
 </html>
