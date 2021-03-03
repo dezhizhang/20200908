@@ -88,11 +88,15 @@
 		
 		// 开始截图
 		function clickBt(){
-			// debugger
-			html2canvas(document.querySelector("#contLi")).then(canvas => {
-				document.body.appendChild(canvas)
-			});
+			let dom = document.querySelector("#contLi");
+			localStorage.setItem("key", dom.innerHTML);
 			window.location.href="/from";
+// 			html2canvas(document.querySelector("#contLi")).then(canvas => {
+// 				debugger
+// 				document.body.appendChild(canvas)
+// 				// window.location.href="/from";
+// 			});
+			
 		}
 	</script>
 	<script>

@@ -24,6 +24,9 @@ class HomeController extends Controller {
   async from() {
     await this.ctx.render('/from');
   }
+	async share() {
+	  await this.ctx.render('/share');
+	}
 }
 
 module.exports = HomeController;

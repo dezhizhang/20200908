@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="/public/default/css/photograph.css" />
+	</head>
+	<body>
+		<div id="conet"></div>
+	</body>
+	<script>
+		 function init() { 
+			let a = localStorage.getItem("key");
+			let b = localStorage.getItem("dVal");
+			document.getElementById("conet").innerHTML = a;
+			// document.getElementById("conet").innerHTML = "hello kitty!";
+		}; 
+		init(); 
+		function onshow() {
+			document.getElementsByClassName('shareBg')[0].style.display = "block";
+		}
+
+		function onhide() {
+			document.getElementsByClassName('shareBg')[0].style.display = "none";
+		}
+	</script>
+</html>
