@@ -11,9 +11,9 @@
 		<link rel="stylesheet" href="/public/default/css/photograph.css" />
 	</head>
 	<body>
-		<div id="app">
 			<img id='play' class="play" src="/public/default/img/play.png" />
 			<img id='pause' class="pause" src="/public/default/img/pause.png" style="display: none;" />
+		<div id="app">
 			<div v-if="page == 'A'" id="contLi">
 				<!-- <img class="homeBg" src="/public/default/img/divbg.png" /> -->
 				<img class="homeBg" :src="activeLoopIndexSrc" />
