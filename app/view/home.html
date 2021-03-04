@@ -8,33 +8,61 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="/public/default/js/rem.min.js"></script>
-    <link  rel="stylesheet" href="/public/default/css/home.css"  />
-</head>
-<body>
-    <div class="content">
-        <div class="content-left">
-            <img src="/public/default/img/arrow-left.png"/>
-        </div>
-        <div class="content-right">
-            <img src="/public/default/img/arrow-right.png"/>
-        </div>
-        <div class="content-box">
-            <!-- <img src="/public/default/img/border.png"/> -->
-        </div>
-        <div class="bottom" id="bottom">
-            <img src="/public/default/img/bottom-btn.png"/>
-        </div>
-    </div>
-</body>
-<script type="text/javascript">
-    let bottom = document.getElementById('bottom');
-    bottom.onclick = function() {
-        window.location.href = "/photograph"
-    }
-</script>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>晒出我的国庆KPI</title>
+		<script src="/public/default/js/rem.min.js"></script>
+		<link rel="stylesheet" href="/public/default/css/home.css" />
+		<link rel="stylesheet" href="/public/default/css/idangerous.swiper2.7.6.css" />
+	</head>
+	<body>
+		<img id='play' class="play" src="/public/default/img/play.png" />
+		<img id='pause' class="pause" src="/public/default/img/pause.png" style="display: none;" />
+		<img class="homeBg" src="/public/default/img/home.png" />
+		<div class="content">
+			<div class="content-left swiper-button-prev">
+				<img src="/public/default/img/arrow-left.png" />
+			</div>
+			<div class="content-right swiper-button-next">
+				<img src="/public/default/img/arrow-right.png" />
+			</div>
+			<div class="content-box">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="/public/default/img/border.png" />
+						</div>
+						<div class="swiper-slide">
+							<img src="/public/default/img/border1.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom" id="bottom">
+				<img src="/public/default/img/bottom-btn.png" />
+			</div>
+		</div>
+
+	</body>
+	<script src="/public/default/js/jquery-3.5.1.min.js"></script>
+	<script src="/public/default/js/swiper2.7.6.min.js"></script>
+	<script src="../public/default/js/playMusic.js"></script>
+	<script type="text/javascript">
+		var mySwiper = new Swiper('.swiper-container', {
+			loop: true,
+			mousewheelControl: true
+		});
+		$('.swiper-button-prev').click(function() {
+			mySwiper.swipePrev();
+		})
+		$('.swiper-button-next').click(function() {
+			mySwiper.swipeNext();
+		})
+		$('#bottom').click(function() {
+			let index = mySwiper.activeLoopIndex
+			localStorage.setItem("index", index);
+			window.location.href = "/photograph"
+		})
+	</script>
 </html>

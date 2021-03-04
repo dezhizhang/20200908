@@ -3,16 +3,47 @@ body{
     padding: 0px;
     width: 100%;
     height: 100%;
-    background-image: url('../img/home.png');
     background-size: cover;
     background-repeat: no-repeat;
     box-sizing: border-box;
     overflow: hidden;
-    /* display: flex; */
-    padding: 4rem 1rem 0rem 0.8rem;
-
-    /* padding: 0px 1rem; */
 }
+
+.play{
+	position: fixed;
+	right: .45rem;
+	top: .45rem;
+	z-index: 1;
+	width: 1rem;
+	height: 1rem;
+	-webkit-animation:run 3s linear 0s infinite;     
+}
+
+.pause{     
+	position: fixed;
+	right: .45rem;
+	top: .48rem;
+	z-index: 1;
+	width: 1rem;
+	height: 1rem;   
+}   
+@-webkit-keyframes run{     
+	from{     
+		-webkit-transform:rotate(0deg);     
+	}     
+	to{     
+		-webkit-transform:rotate(360deg);     
+	}     
+}  
+
+
+.homeBg{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
 .content{
   width: 100%;
   /* height: 300px; */
@@ -20,14 +51,12 @@ body{
   overflow: hidden;
   box-sizing: border-box;
   padding: 0rem 1.6rem;
-  /* background: yellow; */
- 
+  top: 4rem;
 }
 .content-left{
-    width: 0.8rem;
-    height: 0.6rem;
+    width: 0.4rem;
     position: absolute;
-    left: 0rem;
+    left: 0.4rem;
     top: 0rem;
 }
 .content-left > img{
@@ -36,10 +65,9 @@ body{
     display: block;
 }
 .content-right{
-    width: 0.8rem;
-    height: 0.6rem;
+    width: 0.4rem;
     position: absolute;
-    right: 0rem;
+    right: 0.4rem;
     top: 0rem;
 }
 .content-right > img{
@@ -52,16 +80,25 @@ body{
 .content-box{
     width: 100%;
     height: 10rem;
-    margin-top: 0.2rem;
-    background-image: url('../img/border.png');
+    margin-top: 1rem;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
 
+.swiper-container{
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide img{
+	width: 100%;
+	height: 100%;
 }
 .bottom{
     width: 5rem;
     height: 1.2rem;
+	margin: auto;
     margin-top: 1rem;
     border-radius: 0.2rem;
    

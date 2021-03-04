@@ -41,12 +41,11 @@ body{
 	bottom: 1rem;
 	width: 60%;
 	height: .85rem;
-	line-height: .85rem;
-	text-align: center;
-	font-size: .325rem;
-	letter-spacing:0.25rem;
-	color: rgb(140,38,33);
 	left: 20%;
-	border: 2px solid rgb(140,38,33);
 	z-index: 1;
+	text-align: center;
+}
+
+.buttonStart img{
+	width: 4.5rem;
 }

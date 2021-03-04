@@ -12,8 +12,12 @@
 	</head>
 	<body>
 		<div id="app">
+			<img id='play' class="play" src="/public/default/img/play.png" />
+			<img id='pause' class="pause" src="/public/default/img/pause.png" style="display: none;" />
 			<div v-if="page == 'A'" id="contLi">
-				<img class="homeBg" src="/public/default/img/divbg.png" />
+				<!-- <img class="homeBg" src="/public/default/img/divbg.png" /> -->
+				<img class="homeBg" :src="activeLoopIndexSrc" />
+				
 				<div class="cont">
 					<div class="mycanvasBg"></div>
 					<div class="mycanvas" id="myCanvas">
@@ -92,6 +96,7 @@
 	</body>
 	<script src="/public/default/js/jquery-3.5.1.min.js"></script>
 	<script src="/public/default/js/html2canvas.min.js"></script>
+	<script src="../public/default/js/playMusic.js"></script>
 	<script>
 		var oW, oH;
 		
@@ -143,6 +148,7 @@
 		new Vue({
 			el: '#app',
 			data: {
+				activeLoopIndexSrc:'/public/default/img/divbg.png',
 				page:'A',
 				lent: 0,
 				activeClass: 'a',
@@ -170,7 +176,14 @@
 				}],
 				text:['策划一场国庆趴体，提升大家族的用户活跃','国庆带家人孩子去广州塔坐摩天轮','国庆全家去拍一张大合照！留作纪念','国庆在家做一顿大餐！全家一起聚餐'],
 			},
+			 created() {
+				this.initData()
+			  },
 			methods: {
+				initData(){
+					let index = localStorage.getItem("index");
+					this.activeLoopIndexSrc = index == 0?"/public/default/img/divbg.png":"/public/default/img/divbg2.png" 
+				},
 				onClickImg(e) {
 					this.activeClass = e;
 				},
