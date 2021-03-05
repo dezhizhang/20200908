@@ -340,6 +340,16 @@ body{
 	display: none;
 }
 
+.shareContBg div{
+	color: white;
+	text-align: center;
+	position: fixed;
+	bottom: 2rem;
+	margin: auto;
+	width: 100%;
+	text-align: center;
+}
+
 .shareBg img{
 	float: right;
 	width: 6rem;
@@ -360,6 +370,13 @@ body{
 }
 
 .shareCont{
+}
+
+.shareCont img{
+	position: fixed;
+	width: 70%;
+	left: 15%;
+	top: 1.6rem;
 }
 
 .shareContBg{

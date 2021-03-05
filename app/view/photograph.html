@@ -14,13 +14,13 @@
 			<img id='play' class="play" src="/public/default/img/play.png" />
 			<img id='pause' class="pause" src="/public/default/img/pause.png" style="display: none;" />
 		<div id="app">
-			<div v-if="page == 'A'" id="contLi">
+			<div :style="{'top':page == 'A'? '0': '100%' }" id="contLi">
 				<!-- <img class="homeBg" src="/public/default/img/divbg.png" /> -->
 				<img class="homeBg" :src="activeLoopIndexSrc" />
-				
+				<div class="setText">策划一场国庆趴体，提升大家族的用户活跃</div>
 				<div class="cont">
-					<div class="mycanvasBg"></div>
-					<div class="mycanvas" id="myCanvas">
+					<div class="mycanvasBg" :style="{'top':page == 'A'? '3rem': 'calc(100% + 3rem)' }"></div>
+					<div class="mycanvas" id="myCanvas" :style="{'top':page == 'A'? '3rem': 'calc(100% + 3rem)' }">
 						<div class="addNewImg" :class="layerIndex == index ? 'addNewImgBorder' : '' " @click="onClicklayerIndex(index)" v-for="(item,index) in contList" :style="{zIndex:(index)}">
 							<div v-if="layerIndex == index">
 								<img class="close" src="/public/default/img/close.png" @click="closeImg(index)" />
@@ -32,7 +32,7 @@
 							<img class="mobileImg" :src="item" />
 						</div>
 					</div>
-					<div class="slider" id="slider">
+					<div class="slider" id="slider"  v-if="page == 'A'">
 						<div class="buttonStart">
 							<img class="btn" src="/public/default/img/shootingBut.png" @click="clickBt()" />
 							<img src="/public/default/img/shootingBg.png" />
@@ -72,9 +72,9 @@
 							<img :src="item.img" :data-url='item.img' />
 						</div>
 					</div>
-					<textarea class="textarea" id="myVal" placeholder="请输入你的国庆KPI(30字以内)" maxlength="30"></textarea>
+					<textarea class="textarea"  id="myVal" @keydown="suTextarea" placeholder="请输入你的国庆KPI(30字以内)" maxlength="30"></textarea>
 					<div class="bottom">
-						<div class="btn" @click="onshow()">
+						<div class="btn" @click="onshow()" >
 							<img src="/public/default/img/bottom.png" />
 						</div>
 					</div>
@@ -84,6 +84,7 @@
 			<div  v-if="page == 'C'" id="share">
 				<div class="shareContBg">
 					<img src="/public/default/img/shareContBg.png" />
+					<div>长按图片保存</div>
 					<img class="shareBottom" @click="onshowShare()" src="/public/default/img/bottom.png" />
 				</div>
 				<div class="shareBg" @click="onhideShare()">
@@ -180,6 +181,10 @@
 				this.initData()
 			  },
 			methods: {
+				suTextarea(e){
+					let val = e.currentTarget.value + e.key;	  
+					 document.querySelector(".setText").innerText = val;
+				},
 				initData(){
 					let index = localStorage.getItem("index");
 					this.activeLoopIndexSrc = index == 0?"/public/default/img/divbg.png":"/public/default/img/divbg2.png" 
@@ -213,14 +218,6 @@
 				},
 				clickBt(){
 					this.layerIndex = null
-					document.getElementById("slider").style.display="none"
-					let dom = document.querySelector("#contLi");
-					let taht = this;
-					html2canvas(document.querySelector("#contLi")).then(canvas => {
-						taht.shareCanvas = canvas
-						// document.body.appendChild(canvas)
-					});
-					document.getElementById("slider").style.display="block"
 					this.page = 'B'
 				},
 				//  form
@@ -231,21 +228,25 @@
 						 list[i].ck = false
 					 }
 					 list[index].ck = true
+					 
+					 let val = $("#myVal").val();
+					 val = val?val: this.text[this.index];
+					 document.querySelector(".setText").innerText = val;
 					 this.index = index
 					 this.list = list
 				},
 				onshow(){
-					this.page = 'C'
+					let dom = document.querySelector("#contLi");
 					let val = $("#myVal").val();
-					val = val?val: this.text[this.index];
-					let dom = document.createElement("div");
-					let domA = document.createElement("div")
-					dom.className = 'shareBgScale'
-					domA.className = 'setText'
-					domA.innerText = val
-					dom.appendChild(this.shareCanvas)
-					dom.appendChild(domA)
-					document.getElementsByClassName('shareCont')[0].appendChild(dom);
+					html2canvas(document.querySelector("#contLi")).then(canvas => {
+						  let base64ImgSrc = canvas.toDataURL("image/png")
+						    /* 如果只是显示,可用以下代码 */
+						    let img = document.createElement("img")
+						    img.src = base64ImgSrc
+						document.getElementsByClassName('shareCont')[0].appendChild(img);
+					});
+					this.page = 'C'
+					
 				},
 				onshowShare(){
 					document.getElementsByClassName('shareBg')[0].style.display = "block";
